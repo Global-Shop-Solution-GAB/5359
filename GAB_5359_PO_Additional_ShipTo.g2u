@@ -1,0 +1,185 @@
+Program.Sub.ScreenSU.Start
+Gui.F_ShipTo2..Create
+Gui.F_ShipTo2..Caption("Direccion Adicional 2")
+Gui.F_ShipTo2..Size(8835,7440)
+Gui.F_ShipTo2..MinX(0)
+Gui.F_ShipTo2..MinY(0)
+Gui.F_ShipTo2..Position(0,0)
+Gui.F_ShipTo2..BackColor(-2147483633)
+Gui.F_ShipTo2..MousePointer(0)
+Gui.F_ShipTo2..Event(UnLoad,F_ShipTo2_UnLoad)
+Gui.F_ShipTo2.lbl1.Create(Label,"DIRECCION ADICIONAL 2:",True,3150,510,0,1710,345,True,0,"Arial",8,-2147483633,0)
+Gui.F_ShipTo2.cmdSave.Create(Button)
+Gui.F_ShipTo2.cmdSave.Size(3480,570)
+Gui.F_ShipTo2.cmdSave.Position(2265,5385)
+Gui.F_ShipTo2.cmdSave.Caption("GUARDAR DIRECCION")
+Gui.F_ShipTo2.cmdSave.Event(Click,cmdSave_Click)
+Gui.F_ShipTo2.lbl3.Create(Label,"Nombre 1",True,1935,300,0,840,1260,True,0,"Arial",8,-2147483633,0)
+Gui.F_ShipTo2.lbl4.Create(Label,"Direccion",True,1935,300,0,840,1650,True,0,"Arial",8,-2147483633,0)
+Gui.F_ShipTo2.lbl5.Create(Label,"Direccion",True,1935,300,0,840,2025,True,0,"Arial",8,-2147483633,0)
+Gui.F_ShipTo2.lbl6.Create(Label,"Direccion",True,1935,300,0,840,2445,True,0,"Arial",8,-2147483633,0)
+Gui.F_ShipTo2.lbl7.Create(Label,"Direccion",True,1935,300,0,840,2835,True,0,"Arial",8,-2147483633,0)
+Gui.F_ShipTo2.lbl8.Create(Label,"Direccion",True,1935,300,0,840,3255,True,0,"Arial",8,-2147483633,0)
+Gui.F_ShipTo2.lbl9.Create(Label,"Ciudad/Estado/CP",True,1935,300,0,840,3645,True,0,"Arial",8,-2147483633,0)
+Gui.F_ShipTo2.lbl10.Create(Label,"Pais",True,1935,300,0,840,4050,True,0,"Arial",8,-2147483633,0)
+Gui.F_ShipTo2.lbl12.Create(Label,"Atencion",True,1935,300,0,840,4485,True,0,"Arial",8,-2147483633,0)
+Gui.F_ShipTo2.txtNom1.Create(TextBox,"",True,4005,300,0,3060,1230,True,0,"Arial",8,-2147483643,1)
+Gui.F_ShipTo2.txtNom1.Locked(True)
+Gui.F_ShipTo2.txtDireccion.Create(TextBox,"",True,4005,300,0,3060,1620,True,0,"Arial",8,-2147483643,1)
+Gui.F_ShipTo2.txtDireccion.Locked(True)
+Gui.F_ShipTo2.txtDireccion2.Create(TextBox,"",True,4005,300,0,3060,1980,True,0,"Arial",8,-2147483643,1)
+Gui.F_ShipTo2.txtDireccion2.Locked(True)
+Gui.F_ShipTo2.txtDireccion3.Create(TextBox,"",True,4005,300,0,3060,2385,True,0,"Arial",8,-2147483643,1)
+Gui.F_ShipTo2.txtDireccion3.Locked(True)
+Gui.F_ShipTo2.txtDireccion4.Create(TextBox,"",True,4005,300,0,3060,2805,True,0,"Arial",8,-2147483643,1)
+Gui.F_ShipTo2.txtDireccion4.Locked(True)
+Gui.F_ShipTo2.txtDireccion5.Create(TextBox,"",True,4005,300,0,3060,3225,True,0,"Arial",8,-2147483643,1)
+Gui.F_ShipTo2.txtDireccion5.Locked(True)
+Gui.F_ShipTo2.txtCiudad.Create(TextBox,"",True,2010,300,0,3060,3615,True,0,"Arial",8,-2147483643,1)
+Gui.F_ShipTo2.txtCiudad.Locked(True)
+Gui.F_ShipTo2.txtEstado.Create(TextBox,"",True,630,300,0,5175,3615,True,0,"Arial",8,-2147483643,1)
+Gui.F_ShipTo2.txtEstado.Locked(True)
+Gui.F_ShipTo2.txtCP.Create(TextBox,"",True,1185,300,0,5880,3615,True,0,"Arial",8,-2147483643,1)
+Gui.F_ShipTo2.txtCP.Locked(True)
+Gui.F_ShipTo2.txtPais.Create(TextBox,"",True,4005,300,0,3060,4020,True,0,"Arial",8,-2147483643,1)
+Gui.F_ShipTo2.txtPais.Locked(True)
+Gui.F_ShipTo2.txtAttn.Create(TextBox,"",True,4005,300,0,3060,4425,True,0,"Arial",8,-2147483643,1)
+Gui.F_ShipTo2.txtAttn.Locked(True)
+Gui.F_ShipTo2.lbl13.Create(Label,"Telefono/Fax",True,1935,300,0,825,4950,True,0,"Arial",8,-2147483633,0)
+Gui.F_ShipTo2.cmd1.Create(Button)
+Gui.F_ShipTo2.cmd1.Size(375,375)
+Gui.F_ShipTo2.cmd1.Position(4935,360)
+Gui.F_ShipTo2.cmd1.Caption("^")
+Gui.F_ShipTo2.cmd1.Event(Click,cmd1_Click)
+Gui.F_ShipTo2.txtTel.Create(TextBox,"",True,4005,300,0,3060,4890,True,0,"Arial",8,-2147483643,1)
+Gui.F_ShipTo2.txtTel.Locked(True)
+Program.Sub.ScreenSU.End
+
+Program.Sub.Preflight.Start
+Program.Sub.Preflight.End
+
+Program.Sub.Main.Start
+F.ODBC.Connection!conx.OpenCompanyConnection
+'This project will be for company Industrias Sola Basic for adding an additional Ship to on PO, will take addresses from table Po_multi_ship
+
+'PO Manual populate hook
+f.Intrinsic.Control.If(v.Caller.Hook,=,16850)
+	v.Passed.000072.Set("Dir. Adic2")
+	f.Intrinsic.Control.If(V.Passed.000008,=,"")
+		F.Intrinsic.UI.ChangeCallerProperty(variable.passed.000072, "LOCK", 1)
+	f.Intrinsic.Control.Else
+		F.Intrinsic.UI.ChangeCallerProperty(variable.passed.000072, "LOCK", 0)
+	f.Intrinsic.Control.EndIf
+'PO Manual PO Change
+F.Intrinsic.Control.ElseIf(v.Caller.Hook,=,16855)
+	V.Passed.Global.Set(V.Passed.000008)
+	f.Intrinsic.Control.If(V.Passed.000008,=,"")
+		F.Intrinsic.UI.ChangeCallerProperty(variable.passed.000072, "LOCK", 1)
+	f.Intrinsic.Control.Else
+		F.Intrinsic.UI.ChangeCallerProperty(variable.passed.000072, "LOCK", 0)
+	f.Intrinsic.Control.EndIf
+'PO Manual Script 3
+f.Intrinsic.Control.ElseIf(v.Caller.Hook,=,16910)
+	F.Intrinsic.Control.CallSub(F_ShipTo2_Load)
+	gui.F_ShipTo2..Show
+f.Intrinsic.Control.EndIf
+Program.Sub.Main.End
+
+Program.Sub.cmd1_Click.Start
+v.Local.sRet.Declare
+v.Local.sSQL.Declare
+v.Local.sTitles.Declare
+v.Local.iWidths.Declare
+
+'Select from custom browser the additional address and add return variables to form
+f.Intrinsic.String.Split("NAME*!*ADRS1*!*ADRS2*!*ADRS3*!*ADRS4*!*ADRS5*!*CITY*!*STATE*!*ZIP*!*COUNTRY*!*ATTN*!*FILL_PHONE","*!*",v.local.sTitles)
+f.Intrinsic.String.Split("1500*!*1000*!*1000*!*1000*!*1000*!*1000*!*1000*!*1000*!*1000*!*1000*!*1000*!*1000","*!*",v.local.iWidths)
+f.Intrinsic.UI.SetBrowserHotTypeAhead(True)
+f.Intrinsic.UI.Browser("Select from PO_MULTI_SHIP","CONX", "select NAME as Nombre, ADRS1 as Direccion, ADRS2 as Direccion2, ADRS3 as Direccion3, ADRS4 as Direccion4, ADRS5 as Direccion5, CITY as Ciudad, STATE as Estado, ZIP as CP,COUNTRY as Pais, ATTN, FILL_PHONE as Telefono from PO_MULTI_SHIP",v.Local.sTitles,v.Local.iWidths,v.Local.sRet)
+F.Intrinsic.Control.If(v.Local.sRet,"=","***CANCEL***")
+	F.Intrinsic.Control.Else
+	F.Intrinsic.String.Split(v.Local.sRet,"*!*",v.Local.sRet)
+	gui.F_ShipTo2.txtNom1.Text(v.Local.sRet(0).Trim)
+	gui.F_ShipTo2.txtDireccion.Text(v.Local.sRet(1).Trim)
+	gui.F_ShipTo2.txtDireccion2.Text(v.Local.sRet(2).Trim)
+	gui.F_ShipTo2.txtDireccion3.Text(v.Local.sRet(3).Trim)
+	gui.F_ShipTo2.txtDireccion4.Text(v.Local.sRet(4).Trim)
+	gui.F_ShipTo2.txtDireccion5.Text(v.Local.sRet(5).Trim)
+	gui.F_ShipTo2.txtCiudad.Text(v.Local.sRet(6).Trim)
+	gui.F_ShipTo2.txtEstado.Text(v.Local.sRet(7).Trim)
+	gui.F_ShipTo2.txtCP.Text(v.Local.sRet(8).Trim)
+	gui.F_ShipTo2.txtPais.Text(v.Local.sRet(9).Trim)
+	gui.F_ShipTo2.txtAttn.Text(v.Local.sRet(10).Trim)
+	gui.F_ShipTo2.txtTel.Text(v.Local.sRet(11).Trim)
+F.Intrinsic.Control.EndIf
+Program.Sub.cmd1_Click.End
+
+Program.Sub.cmdSave_Click.Start
+v.Local.sSQL.Declare
+
+F.Intrinsic.String.Build("SELECT * FROM GAB_5359_ADD_SHIPTO WHERE PURCHASE_ORDER = '{0}'",V.Passed.Global.Trim,v.Local.sSQL)
+f.ODBC.Connection!CONX.OpenLocalRecordsetRW("RST",v.Local.sSQL)
+f.Intrinsic.Control.If(v.ODBC.CONX!RST.EOF,=,True)
+	f.ODBC.CONX!RST.AddNew
+	f.ODBC.CONX!RST.Set!PURCHASE_ORDER(V.Passed.Global.Trim)
+f.Intrinsic.Control.EndIf
+f.ODBC.CONX!RST.Set!NAME(v.Screen.F_ShipTo2!txtNom1.Text)
+f.ODBC.CONX!RST.Set!ADRS1(V.Screen.F_ShipTo2!txtDireccion.Text)
+f.ODBC.CONX!RST.Set!ADRS2(V.Screen.F_ShipTo2!txtDireccion2.Text)
+f.ODBC.CONX!RST.Set!ADRS3(V.Screen.F_ShipTo2!txtDireccion3.Text)
+f.ODBC.CONX!RST.Set!ADRS4(V.Screen.F_ShipTo2!txtDireccion4.Text)
+f.ODBC.CONX!RST.Set!ADRS5(V.Screen.F_ShipTo2!txtDireccion5.Text)
+f.ODBC.CONX!RST.Set!CITY(V.Screen.F_ShipTo2!txtCiudad.Text)
+f.ODBC.CONX!RST.Set!STATE(V.Screen.F_ShipTo2!txtEstado.Text)
+f.ODBC.CONX!RST.Set!ZIP(V.Screen.F_ShipTo2!txtCP.Text)
+f.ODBC.CONX!RST.Set!COUNTRY(V.Screen.F_ShipTo2!txtPais.Text)
+f.ODBC.CONX!RST.Set!ATTN(V.Screen.F_ShipTo2!txtAttn.Text)
+f.ODBC.CONX!RST.Set!FILL_PHONE(V.Screen.F_ShipTo2!txtTel.Text)
+f.ODBC.CONX!RST.Update
+F.Intrinsic.UI.Msgbox("DIRECCION GUARDADA")
+f.ODBC.CONX!RST.Close
+Program.Sub.cmdSave_Click.End
+
+
+Program.Sub.F_ShipTo2_Load.Start
+v.Local.sSQL.Declare
+
+'Load Existing data from Custom Table into F_SHIPTO2 Form
+f.Intrinsic.String.Build("SELECT * FROM GAB_5359_ADD_SHIPTO WHERE PURCHASE_ORDER = '{0}'",V.Passed.Global,v.Local.sSQL)
+f.ODBC.Connection!CONX.OpenRecordsetRO("RSTLOAD",v.Local.sSQL)
+f.Intrinsic.Control.If(v.ODBC.CONX!RSTLOAD.EOF,=,"False")
+	f.Intrinsic.Control.If(v.ODBC.CONX!RSTLOAD.FieldValTrim!PURCHASE_ORDER,=,"")
+		Gui.F_ShipTo2.txtNom1.Value(1)
+		Gui.F_ShipTo2.txtDireccion.Value(2)
+		Gui.F_ShipTo2.txtDireccion2.Value(3)
+		Gui.F_ShipTo2.txtDireccion3.Value(4)
+		Gui.F_ShipTo2.txtDireccion4.Value(5)
+		Gui.F_ShipTo2.txtDireccion5.Value(6)
+		Gui.F_ShipTo2.txtCiudad.Value(7)
+		Gui.F_ShipTo2.txtEstado.Value(8)
+		Gui.F_ShipTo2.txtCP.Value(9)
+		Gui.F_ShipTo2.txtPais.Value(10)
+		Gui.F_ShipTo2.txtAttn.Value(11)
+		Gui.F_ShipTo2.txtTel.Value(12)
+	f.Intrinsic.Control.EndIf
+	gui.F_ShipTo2.txtNom1.Text(v.ODBC.CONX!RSTLOAD.FieldValTrim!NAME)
+	gui.F_ShipTo2.txtDireccion.Text(v.ODBC.CONX!RSTLOAD.FieldValTrim!ADRS1)
+	gui.F_ShipTo2.txtDireccion2.Text(v.ODBC.CONX!RSTLOAD.FieldValTrim!ADRS2)
+	gui.F_ShipTo2.txtDireccion3.Text(v.ODBC.CONX!RSTLOAD.FieldValTrim!ADRS3)
+	gui.F_ShipTo2.txtDireccion4.Text(v.ODBC.CONX!RSTLOAD.FieldValTrim!ADRS4)
+	gui.F_ShipTo2.txtDireccion5.Text(v.ODBC.CONX!RSTLOAD.FieldValTrim!ADRS5)
+	gui.F_ShipTo2.txtCiudad.Text(v.ODBC.CONX!RSTLOAD.FieldValTrim!CITY)
+	gui.F_ShipTo2.txtEstado.Text(v.ODBC.CONX!RSTLOAD.FieldValTrim!STATE)
+	gui.F_ShipTo2.txtCP.Text(v.ODBC.CONX!RSTLOAD.FieldValTrim!ZIP)
+	gui.F_ShipTo2.txtPais.Text(v.ODBC.CONX!RSTLOAD.FieldValTrim!COUNTRY)
+	gui.F_ShipTo2.txtAttn.Text(v.ODBC.CONX!RSTLOAD.FieldValTrim!ATTN)
+	gui.F_ShipTo2.txtTel.Text(v.ODBC.CONX!RSTLOAD.FieldValTrim!FILL_PHONE)
+f.Intrinsic.Control.EndIf
+GUI.F_ShipTo2..Show
+Program.Sub.F_ShipTo2_Load.End
+
+
+Program.Sub.F_ShipTo2_UnLoad.Start
+F.ODBC.Connection!Conx.Close
+F.Intrinsic.Control.End
+Program.Sub.F_ShipTo2_UnLoad.End
